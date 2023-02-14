@@ -1,0 +1,51 @@
+{% extends 'navbar.html' %}
+
+
+{% block title %}Sightings Map{% endblock %}
+
+
+{% block head %}
+<!-- Leaflet JS code-->
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+  crossorigin=""></script>
+
+<!--Leaflet Heatmap plugin-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/leaflet-heat.js') }}"></script>
+
+<!-- D3 Library -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin="" />
+
+<!--URL for API-->
+<script>const url = "{{url_for('sightings')}}";</script>
+{% endblock %}
+
+
+{% block content %}
+<!-- Start of background -->
+<!-- Create a <canvas> element -->
+<canvas id="canvas-image-blending"></canvas>
+<!-- Call the Granim Plugin script -->
+<script src="{{url_for('static', filename='js/plugin_granim/dists/granim.js')}}"></script>
+<!-- Create a Granim instance -->
+<script src="{{url_for('static', filename='js/visualization_bg.js')}}"></script>
+<!-- End of background -->
+
+
+<!-- Start of Visualization -->
+<div class="container-fluid map-container">
+  <div id="map"></div>
+</div>
+<!-- End of Visualization -->
+
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src='https://cdn.plot.ly/plotly-2.16.1.min.js'></script>
+<script src="{{url_for('static', filename='js/Sightings_Map.js')}}"></script>
+
+{% endblock %}
